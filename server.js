@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 const authRouter = require("./routes/auth.routes");
@@ -14,6 +15,7 @@ dotenv.config();
 const PORT = config.PORT || 3002;
 
 // middlewares
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
