@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://chat-app-frontend-topaz.vercel.app"],
+    origin: "*",
     methods: ["GET", "POST"],
     // origin: "*",
     // methods: ["GET", "POST"],
