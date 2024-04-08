@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: [config.FRONTEND_URI],
     methods: ["GET", "POST"],
     // origin: "*",
     // methods: ["GET", "POST"],
