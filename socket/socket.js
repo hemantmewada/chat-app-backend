@@ -13,6 +13,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
     // origin: "*",
     // methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
