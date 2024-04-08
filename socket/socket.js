@@ -5,7 +5,12 @@ const config = require("../config/config");
 
 // create a server
 const app = express();
-
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
