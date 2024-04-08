@@ -2,17 +2,20 @@ const { Server } = require("socket.io");
 const http = require("http");
 const express = require("express");
 const config = require("../config/config");
+const cors = require("cors");
 
 // create a server
 const app = express();
 
+app.use(cors());
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: [config.FRONTEND_URI],
-    methods: ["GET", "POST"],
-    // origin: "*",
+    // origin: [config.FRONTEND_URI],
     // methods: ["GET", "POST"],
+    origin: "*",
+    methods: ["GET", "POST"],
   },
 });
 
