@@ -6,7 +6,12 @@ const cors = require("cors");
 
 // create a server
 const app = express();
-
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 app.use(cors());
 
 const server = http.createServer(app);
