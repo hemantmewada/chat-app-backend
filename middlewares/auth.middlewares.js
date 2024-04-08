@@ -4,7 +4,9 @@ const User = require("../models/user.model");
 
 const protectRoute = async (req, res, next) => {
   try {
-    const token = await req.cookies.jwt;
+    // const token = await req.cookies.jwt;
+    const token = await req.headers.authorization;
+    // console.log("token", token);
     if (!token) {
       return res.status(401).send({
         status: false,

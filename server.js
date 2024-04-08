@@ -9,12 +9,10 @@ const config = require("./config/config");
 const mongoConn = require("./config/db");
 const messageRouter = require("./routes/message.routes");
 const userRouter = require("./routes/user.routes");
+const { app, server } = require("./socket/socket");
 // dotenv configuration
 dotenv.config();
 const PORT = config.PORT || 3002;
-
-// create a server
-const app = express();
 
 // middlewares
 app.use(cors());
@@ -35,7 +33,7 @@ app.use("/api/messages", messageRouter);
 app.use("/api/users", userRouter);
 
 mongoConn().then(() => {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`.bgGreen);
   });
 });

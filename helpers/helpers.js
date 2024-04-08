@@ -19,20 +19,32 @@ const comparePassword = async (password, hashedPassword) => {
   }
 };
 
-const generateJWT = async (user, res) => {
+// const generateJWT = async (user, res) => {
+//   try {
+//     const jwt = await jsonwebtoken.sign(
+//       { userId: user._id },
+//       config.JWT_SECRET,
+//       { expiresIn: "30d" }
+//     );
+//     // return jwt;
+//     res.cookie("jwt", jwt, {
+//       maxAge: 30 * 24 * 60 * 60 * 1000, // miliseconds
+//       httpOnly: true,
+//       sameSite: "strict",
+//       secure: process.env.NODE_ENV != "development",
+//     });
+//   } catch (error) {
+//     console.log(`Error in generateJWT function ${error}`);
+//   }
+// };
+const generateJWT = async (user) => {
   try {
     const jwt = await jsonwebtoken.sign(
       { userId: user._id },
       config.JWT_SECRET,
       { expiresIn: "30d" }
     );
-    // return jwt;
-    res.cookie("jwt", jwt, {
-      maxAge: 30 * 24 * 60 * 60 * 1000, // miliseconds
-      httpOnly: true,
-      sameSite: "strict",
-      secure: process.env.NODE_ENV != "development",
-    });
+    return jwt;
   } catch (error) {
     console.log(`Error in generateJWT function ${error}`);
   }

@@ -29,12 +29,12 @@ const registerController = async (req, res) => {
     savedUser = await savedUser.save();
     if (savedUser) {
       // generate jwt
-      // const token = await generateJWT(savedUser);
-      await generateJWT(savedUser, res);
+      const token = await generateJWT(savedUser);
+      // await generateJWT(savedUser, res);
       return res.status(201).json({
         status: true,
         message: `Your registration has been successful.`,
-        // token,
+        token,
         data: savedUser,
       });
     } else {
@@ -65,10 +65,12 @@ const loginController = async (req, res) => {
         message: `Invalid username or password.`,
       });
     }
-    await generateJWT(user, res);
+    // await generateJWT(user, res);
+    const token = await generateJWT(user);
     return res.status(200).json({
       status: true,
       message: `Login successful.`,
+      token,
       data: user,
     });
   } catch (error) {
