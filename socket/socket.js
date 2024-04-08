@@ -14,8 +14,8 @@ app.use((req, res, next) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    // origin: [config.FRONTEND_URI],
-    origin: "*",
+    origin: ["https://chat-app-frontend-hemant.netlify.app"],
+    // origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
